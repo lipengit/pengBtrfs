@@ -515,7 +515,7 @@ static void run_xor(void **pages, int src_cnt, ssize_t len)
 
 	while(src_cnt > 0) {
 		xor_src_cnt = min(src_cnt, MAX_XOR_BLOCKS);
-		xor_blocks(xor_src_cnt, len, dest, pages + src_off);
+		// xor_blocks(xor_src_cnt, len, dest, pages + src_off);
 
 		src_cnt -= xor_src_cnt;
 		src_off += xor_src_cnt;
@@ -1245,8 +1245,8 @@ static noinline void finish_rmw(struct btrfs_raid_bio *rbio)
 			SetPageUptodate(p);
 			pointers[stripe++] = kmap(p);
 
-			raid6_call.gen_syndrome(rbio->real_stripes, PAGE_SIZE,
-						pointers);
+			// raid6_call.gen_syndrome(rbio->real_stripes, PAGE_SIZE,
+			//			pointers);
 		} else {
 			/* raid5 */
 			memcpy(pointers[nr_data], pointers[0], PAGE_SIZE);
@@ -1893,12 +1893,12 @@ static void __raid_recover_end_io(struct btrfs_raid_bio *rbio)
 			}
 
 			if (rbio->bbio->raid_map[failb] == RAID5_P_STRIPE) {
-				raid6_datap_recov(rbio->real_stripes,
-						  PAGE_SIZE, faila, pointers);
+				//raid6_datap_recov(rbio->real_stripes,
+				//		  PAGE_SIZE, faila, pointers);
 			} else {
-				raid6_2data_recov(rbio->real_stripes,
-						  PAGE_SIZE, faila, failb,
-						  pointers);
+				//raid6_2data_recov(rbio->real_stripes,
+				//		  PAGE_SIZE, faila, failb,
+				//		  pointers);
 			}
 		} else {
 			void *p;
@@ -2371,8 +2371,8 @@ static noinline void finish_parity_scrub(struct btrfs_raid_bio *rbio,
 			 */
 			pointers[stripe++] = kmap(q_page);
 
-			raid6_call.gen_syndrome(rbio->real_stripes, PAGE_SIZE,
-						pointers);
+			//raid6_call.gen_syndrome(rbio->real_stripes, PAGE_SIZE,
+			//			pointers);
 		} else {
 			/* raid5 */
 			memcpy(pointers[nr_data], pointers[0], PAGE_SIZE);

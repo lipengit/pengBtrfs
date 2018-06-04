@@ -2128,12 +2128,12 @@ static void btrfs_kill_super(struct super_block *sb)
 
 static struct file_system_type btrfs_fs_type = {
 	.owner		= THIS_MODULE,
-	.name		= "btrfs",
+	.name		= "pengBtrfs",
 	.mount		= btrfs_mount,
 	.kill_sb	= btrfs_kill_super,
 	.fs_flags	= FS_REQUIRES_DEV | FS_BINARY_MOUNTDATA,
 };
-MODULE_ALIAS_FS("btrfs");
+MODULE_ALIAS_FS("pengBtrfs");
 
 static int btrfs_control_open(struct inode *inode, struct file *file)
 {
@@ -2295,7 +2295,7 @@ static void btrfs_interface_exit(void)
 
 static void btrfs_print_mod_info(void)
 {
-	pr_info("Btrfs loaded, crc32c=%s"
+	pr_info("Peng Btrfs loaded, crc32c=%s"
 #ifdef CONFIG_BTRFS_DEBUG
 			", debug=on"
 #endif
